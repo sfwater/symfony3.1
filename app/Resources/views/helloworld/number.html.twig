@@ -1,0 +1,31 @@
+{# app/Resources/views/helloworld/index.html.twig#}
+{% extends 'base.html.twig' %}
+{% block title %} water try to test {% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+{% block body%}
+    {% for friend in friends %}
+        <ul>
+            <li>{{ friend.name }}</li>
+            <li>{{ friend.index }}</li>
+        </ul>
+        {{ include('helloworld/index.html.twig',{'friend':friend}) }}
+    {% endfor %}
+    <a class="btn btn-primary" href="{{ path('hello') }}">HELLO</a>
+    <hr>
+    {% block test %}
+        <span class="panel panel-danger">what to next time!!!</span>
+    {% endblock %}
+    <p class="text text-danger">{{  block('test') }}</p>
+    <hr>
+    {% set fruits=['apple','orange','citrus'] %}
+    {% for i in 0..10 %}
+        {{ cycle(fruits,i) }}
+    {% endfor %}
+    <hr>
+    <img src="{{ asset('myapp/images/favicon.ico') }}" alt="symfony">
+    {% block javascript %}
+        {{ parent() }}
+    {% endblock %}
+{% endblock %}
